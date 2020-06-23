@@ -1,7 +1,9 @@
 language: java
 jdk:
   - openjdk11
-install:
+before_install:
+  - chmod +x mvnw
+script:
   - mvn clean install
 cache:
   directories:
