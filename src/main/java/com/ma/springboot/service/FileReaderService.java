@@ -1,8 +1,8 @@
-package com.ma.springboot.dao;
+package com.ma.springboot.service;
 
 import java.util.List;
 
-public interface FileDao {
+public interface FileReaderService {
 
     List<String> readAllLines(String path);
 }

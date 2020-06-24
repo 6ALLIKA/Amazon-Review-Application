@@ -1,16 +1,16 @@
-package com.ma.springboot.dao.impl;
+package com.ma.springboot.service.impl;
 
-import com.ma.springboot.dao.FileDao;
+import com.ma.springboot.service.FileReaderService;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 @Log4j
-@Repository
-public class FileDaoImpl implements FileDao {
+@Service
+public class FileReaderServiceImpl implements FileReaderService {
 
     @SneakyThrows
     @Override

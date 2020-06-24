@@ -1,8 +1,9 @@
 package com.ma.springboot.controller;
 
-import com.ma.springboot.dao.FileDao;
+import com.ma.springboot.service.FileReaderService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IndexController {
 
     @Autowired
-    private FileDao fileDao;
+    private FileReaderService fileReaderService;
 
     @GetMapping
     public String getIndex() {
@@ -20,7 +21,7 @@ public class IndexController {
 
     @ResponseBody
     @GetMapping("/lines")
-    public List<String> readLines() {
-        return fileDao.readAllLines("src/main/resources/Reviews.csv");
+    public List<String> readLines(@Value("src/main/resources/Reviews.csv") String path) {
+        return fileReaderService.readAllLines(path);
     }
 }
