@@ -2,6 +2,8 @@ package com.ma.springboot.service.impl;
 
 import com.ma.springboot.model.dto.LineFromCsvDto;
 import com.ma.springboot.model.dto.mapper.LineFromCsvMapperDto;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -46,7 +48,8 @@ class FileParserFromCsvServiceImplTest {
         dto1.setHelpfulnessNumerator(1);
         dto1.setHelpfulnessDenominator(1);
         dto1.setScore(5);
-        dto1.setTime(1303862400L);
+        dto1.setTime(Instant.ofEpochMilli(1303862400L)
+                .atZone(ZoneId.systemDefault()).toLocalDateTime());
         dto1.setSummary("Good Quality Dog Food");
         dto1.setText("I have bought several of the Vitality canned dog food products and "
                 + "have found them all to be of good quality. The product looks more like "
@@ -61,7 +64,8 @@ class FileParserFromCsvServiceImplTest {
         dto2.setHelpfulnessNumerator(0);
         dto2.setHelpfulnessDenominator(0);
         dto2.setScore(1);
-        dto2.setTime(1346976000L);
+        dto2.setTime(Instant.ofEpochMilli(1346976000L)
+                .atZone(ZoneId.systemDefault()).toLocalDateTime());
         dto2.setSummary("Not as Advertised");
         dto2.setText("\"Product arrived labeled as Jumbo Salted Peanuts...the peanuts were "
                 + "actually small sized unsalted. Not sure if this was an error or "
@@ -75,7 +79,8 @@ class FileParserFromCsvServiceImplTest {
         dto3.setHelpfulnessNumerator(1);
         dto3.setHelpfulnessDenominator(1);
         dto3.setScore(4);
-        dto3.setTime(1219017600L);
+        dto3.setTime(Instant.ofEpochMilli(1219017600L)
+                .atZone(ZoneId.systemDefault()).toLocalDateTime());
         dto3.setSummary("\"\"\"Delight\"\" says it all\"");
         dto3.setText("\"This is a confection that has been around a few centuries. "
                 + " It is a light, pillowy citrus gelatin with nuts - in this case Filberts. "
