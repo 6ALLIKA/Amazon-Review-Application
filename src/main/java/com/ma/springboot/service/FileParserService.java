@@ -1,8 +1,8 @@
 package com.ma.springboot.service;
 
-import com.ma.springboot.model.dto.LineFromCSVDto;
+import com.ma.springboot.model.dto.LineFromCsvDto;
 import java.util.List;
 
 public interface FileParserService {
-    List<LineFromCSVDto> parseLines(List<String> fileLines);
+    List<LineFromCsvDto> parseLines(List<String> fileLines);
 }

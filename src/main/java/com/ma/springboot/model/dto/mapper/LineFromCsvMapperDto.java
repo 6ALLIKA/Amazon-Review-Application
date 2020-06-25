@@ -1,15 +1,15 @@
 package com.ma.springboot.model.dto.mapper;
 
-import com.ma.springboot.model.dto.LineFromCSVDto;
+import com.ma.springboot.model.dto.LineFromCsvDto;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LineFromCSVMapperDto {
+public class LineFromCsvMapperDto {
 
-    public LineFromCSVDto parseLineToDto(String line) {
-        LineFromCSVDto parsedLine = new LineFromCSVDto();
+    public LineFromCsvDto parseLineToDto(String line) {
+        LineFromCsvDto parsedLine = new LineFromCsvDto();
         String[] data = line.split(",");
         parsedLine.setId(Long.parseLong(data[0]));
         parsedLine.setProductId(data[1]);

@@ -1,15 +1,15 @@
 package com.ma.springboot.service.impl;
 
-import com.ma.springboot.model.dto.LineFromCSVDto;
-import com.ma.springboot.model.dto.mapper.LineFromCSVMapperDto;
+import com.ma.springboot.model.dto.LineFromCsvDto;
+import com.ma.springboot.model.dto.mapper.LineFromCsvMapperDto;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileParserFromCSVServiceImplTest {
-    private FileParserFromCSVServiceImpl fileParserFromCSVService =
-            new FileParserFromCSVServiceImpl(new LineFromCSVMapperDto());
+class FileParserFromCsvServiceImplTest {
+    private FileParserFromCsvServiceImpl fileParserFromCsvService =
+            new FileParserFromCsvServiceImpl(new LineFromCsvMapperDto());
 
     @Test
     void parsing_TRUE() {
@@ -38,7 +38,7 @@ class FileParserFromCSVServiceImplTest {
         data.add(s2);
         data.add(s3);
 
-        LineFromCSVDto dto1 = new LineFromCSVDto();
+        LineFromCsvDto dto1 = new LineFromCsvDto();
         dto1.setId(1L);
         dto1.setProductId("B001E4KFG0");
         dto1.setUserId("A3SGXH7AUHU8GW");
@@ -53,7 +53,7 @@ class FileParserFromCSVServiceImplTest {
                 + "a stew than a processed meat and it smells better. My Labrador is finicky"
                 + " and she appreciates this product better than  most.");
 
-        LineFromCSVDto dto2 = new LineFromCSVDto();
+        LineFromCsvDto dto2 = new LineFromCsvDto();
         dto2.setId(2L);
         dto2.setProductId("B00813GRG4");
         dto2.setUserId("A1D87F6ZCVE5NK");
@@ -67,7 +67,7 @@ class FileParserFromCSVServiceImplTest {
                 + "actually small sized unsalted. Not sure if this was an error or "
                 + "if the vendor intended to represent the product as \"\"Jumbo\"\".\"");
 
-        LineFromCSVDto dto3 = new LineFromCSVDto();
+        LineFromCsvDto dto3 = new LineFromCsvDto();
         dto3.setId(3L);
         dto3.setProductId("B000LQOCH0");
         dto3.setUserId("ABXLMWJIXXAIN");
@@ -85,11 +85,11 @@ class FileParserFromCSVServiceImplTest {
                 + "C.S. Lewis' \"\"The Lion, The Witch, and The Wardrobe\"\" - this is the treat "
                 + "that seduces Edmund into selling out his Brother and Sisters to the Witch.\"");
 
-        List<LineFromCSVDto> expected = new ArrayList<>();
+        List<LineFromCsvDto> expected = new ArrayList<>();
         expected.add(dto1);
         expected.add(dto2);
         expected.add(dto3);
 
-        assertEquals(expected, fileParserFromCSVService.parseLines(data));
+        assertEquals(expected, fileParserFromCsvService.parseLines(data));
     }
 }

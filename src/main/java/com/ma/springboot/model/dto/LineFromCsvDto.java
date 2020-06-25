@@ -3,7 +3,7 @@ package com.ma.springboot.model.dto;
 import lombok.Data;
 
 @Data
-public class LineFromCSVDto {
+public class LineFromCsvDto {
     private Long id;
     private String productId;
     private String userId;
