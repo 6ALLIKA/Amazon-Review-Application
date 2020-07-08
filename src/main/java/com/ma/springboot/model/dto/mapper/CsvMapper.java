@@ -9,16 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CsvMapper {
-    private static final int REVIEW_ID = 0;
-    private static final int PRODUCT_ID = 1;
-    private static final int USER_ID = 2;
-    private static final int PROFILE_NAME = 3;
-    private static final int HELPFULNESS_NUMERATOR = 4;
-    private static final int HELPFULNESS_DENOMINATOR = 5;
-    private static final int REVIEW_SCORE = 6;
-    private static final int REVIEW_TIME = 7;
-    private static final int REVIEW_SUMMARY = 8;
-    private static final int REVIEW_TEXT = 9;
 
     public CsvReviewDto parseLineToDto(CSVRecord csvRecord) {
         CsvReviewDto csvReviewDto = new CsvReviewDto(
