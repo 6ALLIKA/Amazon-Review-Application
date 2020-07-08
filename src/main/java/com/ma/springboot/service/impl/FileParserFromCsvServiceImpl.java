@@ -1,28 +1,34 @@
 package com.ma.springboot.service.impl;
 
-import com.ma.springboot.model.dto.LineFromCsvDto;
-import com.ma.springboot.model.dto.mapper.LineFromCsvMapperDto;
+import com.ma.springboot.model.dto.CsvReviewDto;
+import com.ma.springboot.model.dto.mapper.CsvMapper;
 import com.ma.springboot.service.FileParserService;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.SneakyThrows;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FileParserFromCsvServiceImpl implements FileParserService {
-    private final LineFromCsvMapperDto mapperToDto;
+    private final CsvMapper mapperToDto;
 
     @Autowired
-    public FileParserFromCsvServiceImpl(LineFromCsvMapperDto mapperToDto) {
+    public FileParserFromCsvServiceImpl(CsvMapper mapperToDto) {
         this.mapperToDto = mapperToDto;
     }
 
+    @SneakyThrows
     @Override
-    public List<LineFromCsvDto> parseLines(List<String> fileLines) {
-        List<LineFromCsvDto> result = new ArrayList<>();
-        fileLines.stream().skip(1).forEach(s -> {
-            result.add(mapperToDto.parseLineToDto(s));
-        });
-        return result;
+    public List<CsvReviewDto> parseLines(CSVParser csvParser) {
+        Iterable<CSVRecord> csvRecords = csvParser.getRecords();
+        List<CsvReviewDto> csvReviewDtoList = new ArrayList<>();
+        for (CSVRecord csvRecord : csvRecords) {
+            csvReviewDtoList.add(mapperToDto.parseLineToDto(csvRecord));
+        }
+
+        return csvReviewDtoList;
     }
 }

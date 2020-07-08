@@ -1,10 +1,14 @@
 package com.ma.springboot.model.dto;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class LineFromCsvDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class CsvReviewDto {
     private Long id;
     private String productId;
     private String userId;
