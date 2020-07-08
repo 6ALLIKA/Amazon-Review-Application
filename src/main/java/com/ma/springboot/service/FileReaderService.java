@@ -1,8 +1,8 @@
 package com.ma.springboot.service;
 
-import java.util.List;
+import org.apache.commons.csv.CSVParser;
 
 public interface FileReaderService {
 
-    List<String> readAllLines(String path);
+    CSVParser readAllLines(String path);
 }
