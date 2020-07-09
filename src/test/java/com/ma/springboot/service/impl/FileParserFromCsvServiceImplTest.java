@@ -14,8 +14,8 @@ import java.util.List;
 import lombok.SneakyThrows;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FileParserFromCsvServiceImplTest {
     private FileParserFromCsvServiceImpl fileParserFromCsvService =
