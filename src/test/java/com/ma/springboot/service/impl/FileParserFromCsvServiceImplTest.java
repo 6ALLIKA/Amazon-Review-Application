@@ -20,6 +20,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FileParserFromCsvServiceImplTest {
+    public static final String CSV_TEST_CSV = "src/test/resources/csv-test.csv";
     private FileParserFromCsvServiceImpl fileParserFromCsvService =
             new FileParserFromCsvServiceImpl(new CsvMapper());
 
@@ -82,7 +83,7 @@ class FileParserFromCsvServiceImplTest {
         expected.add(dto2);
         expected.add(dto3);
 
-        InputStream inputStream = new FileInputStream("src/test/resources/csv-test.csv");
+        InputStream inputStream = new FileInputStream(CSV_TEST_CSV);
         BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         CSVParser csvParser = new CSVParser(fileReader,
                 CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());

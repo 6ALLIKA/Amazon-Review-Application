@@ -16,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductMapperTest {
+    public static final String SOLOLINE_TEST_CSV = "src/test/resources/csv-sololine-test.csv";
     private final ProductMapper productMapper = new ProductMapper();
     private final CsvMapper csvMapper = new CsvMapper();
 
@@ -24,7 +25,7 @@ class ProductMapperTest {
     void create_product_TRUE() {
         Product productExpected = new Product();
         productExpected.setId("B001E4KFG0");
-        InputStream inputStream = new FileInputStream("src/test/resources/csv-sololine-test.csv");
+        InputStream inputStream = new FileInputStream(SOLOLINE_TEST_CSV);
         BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         CSVParser csvParser = new CSVParser(fileReader,
                 CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());

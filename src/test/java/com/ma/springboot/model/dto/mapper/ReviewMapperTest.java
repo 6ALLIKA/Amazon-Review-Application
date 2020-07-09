@@ -21,6 +21,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReviewMapperTest {
+    public static final String SOLOLINE_TEST_CSV = "src/test/resources/csv-sololine-test.csv";
     private final CsvMapper csvMapper = new CsvMapper();
     private final ReviewMapper reviewMapper = new ReviewMapper();
 
@@ -50,7 +51,7 @@ class ReviewMapperTest {
         user.setReviews(Set.of(reviewExpected));
         reviewExpected.setUser(user);
 
-        InputStream inputStream = new FileInputStream("src/test/resources/csv-sololine-test.csv");
+        InputStream inputStream = new FileInputStream(SOLOLINE_TEST_CSV);
         BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         CSVParser csvParser = new CSVParser(fileReader,
                 CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
