@@ -1,6 +1,7 @@
 package com.ma.springboot.model.dto.mapper;
 
 import com.ma.springboot.model.Product;
+import com.ma.springboot.model.dto.CsvReviewDto;
 import org.springframework.stereotype.Component;
 
 @Component
