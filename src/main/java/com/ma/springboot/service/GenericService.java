@@ -3,7 +3,7 @@ package com.ma.springboot.service;
 import java.util.List;
 import java.util.Set;
 
-public interface GenericService<T> {
+public interface EntityService<T> {
 
     T save(T element);
 
