@@ -2,6 +2,11 @@ package com.ma.springboot.service.impl;
 
 import com.ma.springboot.model.dto.CsvReviewDto;
 import com.ma.springboot.model.dto.mapper.CsvMapper;
+import lombok.SneakyThrows;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -11,13 +16,11 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.SneakyThrows;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
 
 class FileParserFromCsvServiceImplTest {
+    public static final String CSV_TEST_CSV = "src/test/resources/csv-test.csv";
     private FileParserFromCsvServiceImpl fileParserFromCsvService =
             new FileParserFromCsvServiceImpl(new CsvMapper());
 
@@ -80,7 +83,7 @@ class FileParserFromCsvServiceImplTest {
         expected.add(dto2);
         expected.add(dto3);
 
-        InputStream inputStream = new FileInputStream("src/test/java/resources/csv-test.csv");
+        InputStream inputStream = new FileInputStream(CSV_TEST_CSV);
         BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         CSVParser csvParser = new CSVParser(fileReader,
                 CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());

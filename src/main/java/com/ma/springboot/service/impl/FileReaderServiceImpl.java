@@ -23,9 +23,9 @@ public class FileReaderServiceImpl implements FileReaderService {
         String replacedPath = path.replaceAll("[/\\\\]+",
                 Matcher.quoteReplacement(System.getProperty("file.separator")));
         CSVParser csvParser = null;
-        try {
-            InputStream inputStream = new FileInputStream(replacedPath);
-            BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        try (InputStream inputStream = new FileInputStream(replacedPath);
+                BufferedReader fileReader = new BufferedReader(
+                        new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             csvParser = new CSVParser(fileReader,
                     CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
         } catch (FileNotFoundException e) {
