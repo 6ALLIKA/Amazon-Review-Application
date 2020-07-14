@@ -35,7 +35,7 @@ public class FileReaderServiceImpl implements FileReaderService {
 
             csvRecords = csvParser.getRecords();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found");
+            throw new RuntimeException("File not found", e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
