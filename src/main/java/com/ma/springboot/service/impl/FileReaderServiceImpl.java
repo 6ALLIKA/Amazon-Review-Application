@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 
 @Log4j
@@ -19,21 +20,26 @@ import org.springframework.stereotype.Service;
 public class FileReaderServiceImpl implements FileReaderService {
 
     @Override
-    public CSVParser readAllLines(String path) {
+    public Iterable<CSVRecord> getRecordsFromCsv(String path) {
         String replacedPath = path.replaceAll("[/\\\\]+",
                 Matcher.quoteReplacement(System.getProperty("file.separator")));
-        CSVParser csvParser = null;
+        Iterable<CSVRecord> csvRecords;
         try (InputStream inputStream = new FileInputStream(replacedPath);
-                BufferedReader fileReader = new BufferedReader(
-                        new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            csvParser = new CSVParser(fileReader,
-                    CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
+
+                BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream,
+                        StandardCharsets.UTF_8));
+
+                CSVParser csvParser = new CSVParser(fileReader,
+                        CSVFormat.DEFAULT.withFirstRecordAsHeader()
+                                .withIgnoreHeaderCase().withTrim())) {
+
+            csvRecords = csvParser.getRecords();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found");
+            throw new RuntimeException("File not found", e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return csvParser;
+        return csvRecords;
     }
 }

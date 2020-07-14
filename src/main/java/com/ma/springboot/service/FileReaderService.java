@@ -1,8 +1,8 @@
 package com.ma.springboot.service;
 
-import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 public interface FileReaderService {
 
-    CSVParser readAllLines(String path);
+    Iterable<CSVRecord> getRecordsFromCsv(String path);
 }

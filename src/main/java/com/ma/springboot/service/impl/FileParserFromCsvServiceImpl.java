@@ -6,7 +6,6 @@ import com.ma.springboot.service.FileParserService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.SneakyThrows;
-import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +21,7 @@ public class FileParserFromCsvServiceImpl implements FileParserService {
 
     @SneakyThrows
     @Override
-    public List<CsvReviewDto> parseLines(CSVParser csvParser) {
-        Iterable<CSVRecord> csvRecords = csvParser.getRecords();
+    public List<CsvReviewDto> parseLines(Iterable<CSVRecord> csvRecords) {
         List<CsvReviewDto> csvReviewDtoList = new ArrayList<>();
         for (CSVRecord csvRecord : csvRecords) {
             csvReviewDtoList.add(mapperToDto.parseLineToDto(csvRecord));
