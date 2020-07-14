@@ -43,7 +43,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .flatMap(text -> Arrays.stream(text.toLowerCase()
                         .split("[^a-z]+")))
                 .collect(Collectors.toList());
-        Map<String, Long> map = words.stream()
+        Map<String, Long> map = words.parallelStream()
                 .collect(Collectors.groupingBy(w -> w, Collectors.counting()));
 
         return map.entrySet()

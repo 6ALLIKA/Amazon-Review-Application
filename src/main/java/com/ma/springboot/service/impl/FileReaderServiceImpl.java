@@ -23,43 +23,21 @@ public class FileReaderServiceImpl implements FileReaderService {
     public Iterable<CSVRecord> getRecordsFromCsv(String path) {
         String replacedPath = path.replaceAll("[/\\\\]+",
                 Matcher.quoteReplacement(System.getProperty("file.separator")));
-        CSVParser csvParser = null;
-        InputStream inputStream = null;
-        BufferedReader fileReader = null;
         Iterable<CSVRecord> csvRecords;
-        try {
-            inputStream = new FileInputStream(replacedPath);
-            fileReader = new BufferedReader(new InputStreamReader(inputStream,
-                    StandardCharsets.UTF_8));
-            csvParser = new CSVParser(fileReader,
-                    CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
+        try (InputStream inputStream = new FileInputStream(replacedPath);
+
+                BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream,
+                        StandardCharsets.UTF_8));
+
+                CSVParser csvParser = new CSVParser(fileReader,
+                        CSVFormat.DEFAULT.withFirstRecordAsHeader()
+                                .withIgnoreHeaderCase().withTrim())) {
+
             csvRecords = csvParser.getRecords();
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found");
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (fileReader != null) {
-                try {
-                    fileReader.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            if (csvParser != null) {
-                try {
-                    csvParser.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
         }
 
         return csvRecords;
