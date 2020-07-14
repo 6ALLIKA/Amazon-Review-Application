@@ -53,6 +53,13 @@ public class FileReaderServiceImpl implements FileReaderService {
                     throw new RuntimeException(e);
                 }
             }
+            if (csvParser != null) {
+                try {
+                    csvParser.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
 
         return csvRecords;
