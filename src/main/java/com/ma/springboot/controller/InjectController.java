@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/inject")
 @AllArgsConstructor
 public class InjectController {
-    private static final String CSV_PATH = "src/main/resources/Reviews.csv";
+    private static final String CSV_PATH = "src/main/resources/test.csv";
     private final FileParserService fileParserService;
     private final FileReaderService fileReaderService;
     private final ProductService productService;
@@ -39,8 +39,8 @@ public class InjectController {
 
     @GetMapping
     public void injectData() {
-        CSVParser csvRecords = fileReaderService.readAllLines(CSV_PATH);
-        List<CsvReviewDto> csvReviewDtos = fileParserService.parseLines(csvRecords);
+        Iterable<CSVRecord> recordsFromCsv = fileReaderService.getRecordsFromCsv(CSV_PATH);
+        List<CsvReviewDto> csvReviewDtos = fileParserService.parseLines(recordsFromCsv);
         Set<User> users = new HashSet<>();
         Set<Review> reviews = new HashSet<>();
         Set<Product> products = new HashSet<>();

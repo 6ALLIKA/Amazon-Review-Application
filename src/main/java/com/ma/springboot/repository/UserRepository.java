@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select new User(u.profileName) from User u order by size(u.reviews) desc")
-    List<User> findAll(PageRequest pageRequest);
+    List<User> findAllMostActive(PageRequest pageRequest);
 }

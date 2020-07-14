@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("select new Product(p.id) from Product p order by size(p.reviews) desc")
-    List<Product> findAll(PageRequest pageRequest);
+    List<Product> findAllBySize(PageRequest pageRequest);
 }

@@ -27,6 +27,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getMostCommentedProducts(int limit, int offset) {
         PageRequest pageRequest = PageRequest.of(offset, limit);
-        return productRepository.findAll(pageRequest);
+        return productRepository.findAllBySize(pageRequest);
     }
 }

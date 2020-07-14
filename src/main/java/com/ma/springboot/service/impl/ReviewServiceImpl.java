@@ -5,7 +5,6 @@ import com.ma.springboot.repository.ReviewRepository;
 import com.ma.springboot.service.ReviewService;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,10 +43,9 @@ public class ReviewServiceImpl implements ReviewService {
                 .flatMap(text -> Arrays.stream(text.toLowerCase()
                         .split("[^a-z]+")))
                 .collect(Collectors.toList());
-        Map<String, Integer> map = new HashMap<>();
-        for (String word: words) {
-            map.merge(word.toLowerCase(), 1, Integer::sum);
-        }
+        Map<String, Long> map = words.stream()
+                .collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+
         return map.entrySet()
                 .parallelStream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))

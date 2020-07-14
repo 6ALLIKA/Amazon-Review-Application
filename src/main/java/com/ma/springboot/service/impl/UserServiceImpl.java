@@ -27,6 +27,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getMostActiveUsers(int limit, int offset) {
         PageRequest pageRequest = PageRequest.of(offset, limit);
-        return userRepository.findAll(pageRequest);
+        return userRepository.findAllMostActive(pageRequest);
     }
 }
