@@ -1,15 +1,14 @@
 package com.ma.springboot.controller;
 
 import com.ma.springboot.service.FileReaderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@AllArgsConstructor
 @Controller
 public class IndexController {
-
-    @Autowired
-    private FileReaderService fileReaderService;
+    private final FileReaderService fileReaderService;
 
     @GetMapping
     public String getIndex() {
