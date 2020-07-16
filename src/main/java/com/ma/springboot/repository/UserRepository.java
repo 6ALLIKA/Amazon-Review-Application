@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
     @Query("select new User(u.profileName) from User u order by size(u.reviews) desc")
     List<User> findAllMostActive(PageRequest pageRequest);
 }

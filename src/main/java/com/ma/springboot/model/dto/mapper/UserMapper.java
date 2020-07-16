@@ -1,6 +1,8 @@
 package com.ma.springboot.model.dto.mapper;
 
+import com.ma.springboot.model.Client;
 import com.ma.springboot.model.User;
+import com.ma.springboot.model.dto.ClientRegistrationDto;
 import com.ma.springboot.model.dto.CsvReviewDto;
 import com.ma.springboot.model.dto.UserResponseDto;
 import org.springframework.stereotype.Component;
@@ -19,5 +21,12 @@ public class UserMapper {
         UserResponseDto userResponseDto = new UserResponseDto();
         userResponseDto.setProfileName(user.getProfileName());
         return userResponseDto;
+    }
+
+    public Client convertToClient(ClientRegistrationDto clientRegistrationDto) {
+        Client client = new Client();
+        client.setLogin(clientRegistrationDto.getLogin());
+        client.setPassword(clientRegistrationDto.getPassword());
+        return client;
     }
 }
